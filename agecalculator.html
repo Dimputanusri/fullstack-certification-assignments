@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Age Calculator</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 100px; background: #9b59b6; color: white; }
+    .box { background: white; color: black; padding: 20px; border-radius: 10px; display: inline-block; }
+    input, button { padding: 10px; margin: 10px; }
+  </style>
+</head>
+<body>
+  <h2>AGE CALCULATOR</h2>
+  <div class="box">
+    <input type="date" id="dob">
+    <button onclick="calc()">Calculate</button>
+    <p id="output"></p>
+  </div>
+
+  <script>
+    function calc() {
+      let dob = new Date(document.getElementById("dob").value);
+      let now = new Date();
+      let y = now.getFullYear() - dob.getFullYear();
+      let m = now.getMonth() - dob.getMonth();
+      let d = now.getDate() - dob.getDate();
+      if (d < 0) { m--; d += 30; }
+      if (m < 0) { y--; m += 12; }
+      document.getElementById("output").innerText = `${y} Year, ${m} Month, ${d} Day`;
+    }
+  </script>
+</body>
+</html>
