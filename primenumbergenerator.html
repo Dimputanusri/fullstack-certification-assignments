@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prime Number Generator</title>
+</head>
+<body>
+  <h2>Prime Number Generator</h2>
+  Start: <input type="number" id="start"><br><br>
+  End: <input type="number" id="end"><br><br>
+  Prime Numbers:<br>
+  <textarea id="output" rows="5" cols="30"></textarea><br><br>
+  <button onclick="generatePrimes()">Generate</button>
+
+  <script>
+    function isPrime(num) {
+      if (num < 2) return false;
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    }
+
+    function generatePrimes() {
+      const start = parseInt(document.getElementById("start").value);
+      const end = parseInt(document.getElementById("end").value);
+      let result = "";
+
+      for (let i = start; i <= end; i++) {
+        if (isPrime(i)) result += i + " ";
+      }
+
+      document.getElementById("output").value = result;
+    }
+  </script>
+</body>
+</html>
