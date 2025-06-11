@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timer</title>
+  <style>
+    body { text-align: center; font-family: Arial; margin-top: 100px; }
+    h1 { font-size: 40px; }
+    button { margin: 10px; padding: 10px 20px; font-size: 18px; }
+    #start { background: lightblue; }
+    #stop { background: red; color: white; }
+    #reset { background: lightgreen; }
+  </style>
+</head>
+<body>
+
+  <h1>TIMER</h1>
+  <div id="display">25:00</div>
+
+  <button id="start">START</button>
+  <button id="stop">STOP</button>
+  <button id="reset">RESET</button>
+
+  <script>
+    let time = 25 * 60;
+    let timer;
+    const display = document.getElementById("display");
+
+    function updateDisplay() {
+      let minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    document.getElementById("start").onclick = function() {
+      if (!timer) {
+        timer = setInterval(() => {
+          if (time > 0) {
+            time--;
+            updateDisplay();
+          } else {
+            clearInterval(timer);
+          }
+        }, 1000);
+      }
+    };
+
+    document.getElementById("stop").onclick = function() {
+      clearInterval(timer);
+      timer = null;
+    };
+
+    document.getElementById("reset").onclick = function() {
+      clearInterval(timer);
+      timer = null;
+      time = 25 * 60;
+      updateDisplay();
+    };
+
+    updateDisplay();
+  </script>
+
+</body>
+</html>
